@@ -15,7 +15,9 @@ public:
 
     Geometry (int amount_points);
 
-    Geometry (double** figure_points, int amount_points);
+    //Geometry (double** figure_points, int amount_points);
+
+    ~Geometry ();
 
     /*friend istream& operator >>(istream& in, Geometry& other);
     friend ostream& operator << (ostream& out, const Geometry& other);*/
@@ -44,7 +46,7 @@ protected:
 
     virtual void Print_coordinate () = 0;
 
-    ~Geometry ();
+    virtual void Draw () {};
 };
 
 /*istream& operator >>(istream& in, Geometry& other)

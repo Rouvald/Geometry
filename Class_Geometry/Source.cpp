@@ -33,11 +33,11 @@ int main ()
 	}
 	else
 	{
-		double** figure_points = new  double*[amount_points];
+		/*double** figure_points = new  double*[amount_points];
 		for (int i = 0; i < amount_points; i++)
 		{
 			figure_points[i] = new double[COORDINATE];
-		}
+		}*/
 
 		switch (amount_points)
 		{
@@ -104,11 +104,12 @@ int main ()
 		}
 
 		
-        for (int i = 0; i < amount_points; i++)
+        /*for (int i = 0; i < amount_points; i++)
         {
             delete[] figure_points[i];
         }
         delete[] figure_points;
+        */
 	}
 
 

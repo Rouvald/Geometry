@@ -1,2 +1,6 @@
-﻿  Source.cpp
+﻿  Geometry.cpp
+  Source.cpp
+  Triangle.cpp
+D:\C++\HOMEWORK C++\Class_Geometry\Triangle.cpp(218,111): warning C4244: =: преобразование "double" в "int", возможна потеря данных
+  Создание кода...
   Class_Geometry.vcxproj -> D:\C++\HOMEWORK C++\Class_Geometry\x64\Debug\Class_Geometry.exe

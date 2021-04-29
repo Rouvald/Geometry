@@ -30,15 +30,17 @@ public:
     Triangle (int amount_points) : Geometry (amount_points) {}
 
     // Конструктор, который вызывает конструктор родителя
-    Triangle (double** figure_points, int amount_points) : Geometry (figure_points, amount_points)
+    /*Triangle (double** figure_points, int amount_points) : Geometry (figure_points, amount_points)
     {
         Find_angles ();
-    }
+    }*/
 
 
     void Print_coordinate () override;
 
     void Square () override;
+
+    //void Draw () override;
 
     friend istream& operator >>(istream& in, Triangle& other);
     friend ostream& operator << (ostream& out, const Triangle& other);

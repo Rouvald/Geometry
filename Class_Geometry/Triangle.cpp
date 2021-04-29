@@ -62,7 +62,95 @@
         cout << "Square: " << squareGeometry << endl;
     }
 
-    //Use_File
+    // Draw
+    /*void Draw ()
+    {
+        cout << endl << endl;
+        cout << "*****************************************************************" << endl << endl;
+
+        int temp_COORDINATE_X = 0, temp_MIN_X = 99999, temp_MAX_Y = -99999,
+            temp_COORDINATE_Y = 1,
+            difference_COORDINATE_Y = 0;
+
+        for (int i = 0; i < class_amount_lines; i++)
+        {
+            if (arr_figure_points[i][temp_COORDINATE_X] < temp_MIN_X)
+            {
+                temp_MIN_X = arr_figure_points[i][temp_COORDINATE_X];
+                //temp_MIN_X_point = i;
+            }
+            //if (arr_figure_points[i][temp_COORDINATE_Y] > temp_MAX_Y)
+            //{
+            //    temp_MAX_Y = arr_figure_points[i][temp_COORDINATE_Y];
+            //    //temp_MAX_Y_point = i;
+            //}
+        }
+        //cout << temp_MIN_X <<"            "<< temp_MAX_Y << endl;
+
+        int* arr_figure_points_Y = new int[class_amount_lines];
+        int* arr_figure_points_Y_COORDINATE = new int[class_amount_lines];
+        for (int q = 0; q < class_amount_lines; q++)
+        {
+            arr_figure_points_Y_COORDINATE[q] = arr_figure_points[q][temp_COORDINATE_Y];
+            arr_figure_points_Y[q] = q;
+        }
+
+        for (int k = 0; k < class_amount_lines; k++)
+        {
+            int temp = 0, temp_amount = 0, temp_point = 0;
+            temp_MAX_Y = -99999;
+            for (int g = k; g < class_amount_lines; g++)
+            {
+                if (arr_figure_points_Y_COORDINATE[g] > temp_MAX_Y)
+                {
+                    temp_MAX_Y = arr_figure_points_Y_COORDINATE[g];
+                    temp = g;
+                }
+            }
+            temp_amount = arr_figure_points_Y_COORDINATE[k];
+            arr_figure_points_Y_COORDINATE[k] = temp_MAX_Y;
+            arr_figure_points_Y_COORDINATE[temp] = temp_amount;
+
+            temp_point = arr_figure_points_Y[k];
+            arr_figure_points_Y[k] = temp;
+            arr_figure_points_Y[temp] = temp_point;
+
+        }
+        //for (int i = 0; i < class_amount_lines; i++)
+        //{
+        //    cout << arr_figure_points_Y_COORDINATE[i] <<"     "<< arr_figure_points_Y [i]<< endl;
+        //}
+
+        for (int i = 0; i < class_amount_lines; i++)
+        {
+            for (int j = 0; j < (int)arr_figure_points[arr_figure_points_Y[i]][temp_COORDINATE_X]+temp_MIN_X+4; j++)
+            {
+                if (j == (int)arr_figure_points[arr_figure_points_Y[i]][temp_COORDINATE_X]+ temp_MIN_X +4-1)
+                {
+                    cout << "*";
+                }
+                else
+                {
+                    cout << " ";
+                }
+            }
+            if (i < 2)
+            {
+                //difference_COORDINATE_Y = arr_figure_points_Y_COORDINATE[i] - arr_figure_points_Y_COORDINATE[i + 1];
+                for (int k = 0; k < arr_figure_points_Y_COORDINATE[i]; k++)
+                {
+                    cout << endl;
+                }
+            }
+        }
+        cout << endl << endl;
+        cout << "*****************************************************************" << endl << endl;
+
+        delete[] arr_figure_points_Y;
+        delete[] arr_figure_points_Y_COORDINATE;
+    }*/
+
+    // Use_File
     /*void Use_File ()
     {
         string name = "Geometry.txt";

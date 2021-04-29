@@ -19,7 +19,7 @@ Geometry::Geometry (int amount_points)
     arr_amount_angle = new int[class_amount_lines];
 }
 
-Geometry::Geometry (double** figure_points, int amount_points)
+/*Geometry::Geometry (double** figure_points, int amount_points)
 {
     class_amount_lines = amount_points;
     arr_figure_points = new double* [class_amount_lines];
@@ -38,7 +38,7 @@ Geometry::Geometry (double** figure_points, int amount_points)
     Make_lines ();
     Check_life ();
     arr_amount_angle = new int[class_amount_lines];
-}
+}*/
 
 /*friend istream& operator >>(istream& in, Geometry& other);
 friend ostream& operator << (ostream& out, const Geometry& other);*/
