@@ -40,7 +40,9 @@ public:
 
     void Square () override;
 
-    //void Draw () override;
+    void Draw () override;
+
+    void Meridian ()override;
 
     friend istream& operator >>(istream& in, Triangle& other);
     friend ostream& operator << (ostream& out, const Triangle& other);

@@ -59,39 +59,38 @@
 
         squareGeometry = sqrt (perimetr * (perimetr - arr_figure_lines[0]) * (perimetr - arr_figure_lines[1]) * (perimetr - arr_figure_lines[2]));
 
-        cout << "Square: " << squareGeometry << endl;
+        cout << "Square: " << fixed << setprecision (2) << squareGeometry << endl;
     }
 
-    // Draw
-    /*void Draw ()
+    // Draw triangle ( draw 3 points )
+    void Triangle::Draw ()
     {
         cout << endl << endl;
         cout << "*****************************************************************" << endl << endl;
 
-        int temp_COORDINATE_X = 0, temp_MIN_X = 99999, temp_MAX_Y = -99999,
-            temp_COORDINATE_Y = 1,
-            difference_COORDINATE_Y = 0;
+        int temp_MIN_X = 99999, temp_MAX_Y = -99999;
 
         for (int i = 0; i < class_amount_lines; i++)
         {
-            if (arr_figure_points[i][temp_COORDINATE_X] < temp_MIN_X)
+            if (arr_figure_points[i][class_COORDINATE_X] < temp_MIN_X)
             {
-                temp_MIN_X = arr_figure_points[i][temp_COORDINATE_X];
+                temp_MIN_X = arr_figure_points[i][class_COORDINATE_X];
                 //temp_MIN_X_point = i;
             }
-            //if (arr_figure_points[i][temp_COORDINATE_Y] > temp_MAX_Y)
-            //{
-            //    temp_MAX_Y = arr_figure_points[i][temp_COORDINATE_Y];
-            //    //temp_MAX_Y_point = i;
-            //}
+            /*if (arr_figure_points[i][temp_COORDINATE_Y] > temp_MAX_Y)
+            {
+                temp_MAX_Y = arr_figure_points[i][temp_COORDINATE_Y];
+                //temp_MAX_Y_point = i;
+            }*/
         }
+        temp_MIN_X = abs (temp_MIN_X);
         //cout << temp_MIN_X <<"            "<< temp_MAX_Y << endl;
 
         int* arr_figure_points_Y = new int[class_amount_lines];
         int* arr_figure_points_Y_COORDINATE = new int[class_amount_lines];
         for (int q = 0; q < class_amount_lines; q++)
         {
-            arr_figure_points_Y_COORDINATE[q] = arr_figure_points[q][temp_COORDINATE_Y];
+            arr_figure_points_Y_COORDINATE[q] = arr_figure_points[q][class_COORDINATE_Y];
             arr_figure_points_Y[q] = q;
         }
 
@@ -116,16 +115,29 @@
             arr_figure_points_Y[temp] = temp_point;
 
         }
-        //for (int i = 0; i < class_amount_lines; i++)
-        //{
-        //    cout << arr_figure_points_Y_COORDINATE[i] <<"     "<< arr_figure_points_Y [i]<< endl;
-        //}
+         int class_amount_lines_difference_COORDINATE = class_amount_lines - 1;
+        int* arr_difference_COORDINATE = new int[class_amount_lines_difference_COORDINATE];
+        for (int a = 0; a < class_amount_lines_difference_COORDINATE; a++)
+        {
+            arr_difference_COORDINATE[a] = arr_figure_points_Y_COORDINATE[a] - arr_figure_points_Y_COORDINATE[a + 1];
+        }
+        /*for (int i = 0; i < class_amount_lines; i++)
+        {
+            cout << arr_figure_points_Y_COORDINATE[i] <<"     "<< arr_figure_points_Y [i]<< endl;
+        }*/
+
+        // Переменная, которая делает отступ от правой стороны
+        // ( дабы треугольник не строился вплотную к правой границе )
+        // 
+        // Проблема заключаеться в том, что если координата Y одинаковая, то данная переменная
+        // делает отступ 2 раза на одной строчке => точка будет нарисованна правее на значение right_distance
+        int right_distance = 0;
 
         for (int i = 0; i < class_amount_lines; i++)
         {
-            for (int j = 0; j < (int)arr_figure_points[arr_figure_points_Y[i]][temp_COORDINATE_X]+temp_MIN_X+4; j++)
+            for (int j = 0; j < arr_figure_points[arr_figure_points_Y[i]][class_COORDINATE_X] + temp_MIN_X + right_distance + 1; j++)
             {
-                if (j == (int)arr_figure_points[arr_figure_points_Y[i]][temp_COORDINATE_X]+ temp_MIN_X +4-1)
+                if (j == arr_figure_points[arr_figure_points_Y[i]][class_COORDINATE_X] + temp_MIN_X + right_distance)
                 {
                     cout << "*";
                 }
@@ -134,10 +146,9 @@
                     cout << " ";
                 }
             }
-            if (i < 2)
+            if (i < class_amount_lines - 1)
             {
-                //difference_COORDINATE_Y = arr_figure_points_Y_COORDINATE[i] - arr_figure_points_Y_COORDINATE[i + 1];
-                for (int k = 0; k < arr_figure_points_Y_COORDINATE[i]; k++)
+                for (int k = 0; k < arr_difference_COORDINATE[i]; k++)
                 {
                     cout << endl;
                 }
@@ -148,7 +159,27 @@
 
         delete[] arr_figure_points_Y;
         delete[] arr_figure_points_Y_COORDINATE;
-    }*/
+        delete[] arr_difference_COORDINATE;
+    }
+
+    void Triangle::Meridian ()
+    {
+        double* arr_figure_meridian_points = new double[class_amount_lines];
+
+        for (int i = 0; i < class_amount_lines; i++)
+        {
+            if (i == class_amount_lines - 1)
+            {
+                arr_figure_lines[i] = sqrt (((pow ((arr_figure_points[0][class_COORDINATE_X] - arr_figure_points[i][class_COORDINATE_X]), 2)) +
+                    (pow ((arr_figure_points[0][class_COORDINATE_Y] - arr_figure_points[i][class_COORDINATE_Y]), 2))));
+            }
+            else
+            {
+                arr_figure_lines[i] = sqrt (((pow ((arr_figure_points[i + 1][class_COORDINATE_X] - arr_figure_points[i][class_COORDINATE_X]), 2)) +
+                    (pow ((arr_figure_points[i + 1][class_COORDINATE_Y] - arr_figure_points[i][class_COORDINATE_Y]), 2))));
+            }
+        }
+    }
 
     // Use_File
     /*void Use_File ()
@@ -195,7 +226,7 @@
             return;
         }
 
-        int sum_angle = 0;
+        double sum_angle = 0;
         for (int i = 0; i < class_amount_lines; i++)
         {
             double formula_top = 0;
@@ -223,7 +254,7 @@
                 arr_amount_angle[i] = 180 - sum_angle;
             }
         }
-        int temp = 0;
+        double temp = 0;
 
         for (int k = 0; k < class_amount_lines - 1; k++)
         {
@@ -336,12 +367,12 @@ ostream& operator << (ostream& out, const Triangle& other)
         if (i == 2)
         {
             cout << "Line from " << i + 1 << " - " << i - 1 << " points: ";
-            cout << other.arr_figure_lines[i] << "  ";
+            cout << fixed << setprecision(2) <<other.arr_figure_lines[i] << "  ";
             cout << endl;
             break;
         }
         cout << "Line from " << i + 1 << " - " << i + 2 << " points: ";
-        cout << other.arr_figure_lines[i] << "  ";
+        cout << fixed << setprecision (2) << other.arr_figure_lines[i] << "  ";
         cout << endl;
     }
     cout << endl;
@@ -353,7 +384,7 @@ ostream& operator << (ostream& out, const Triangle& other)
         cout << "All angle in this triangle: " << endl;
         for (int q = 0; q < other.class_amount_lines; q++)
         {
-            cout << "Angle for " << q + 1 << " point:  " << other.arr_amount_angle[q] << endl;
+            cout << "Angle for " << q + 1 << " point:  " << fixed << setprecision(2)<< other.arr_amount_angle[q] << endl;
         }
         cout << endl;
 

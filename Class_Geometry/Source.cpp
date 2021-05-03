@@ -1,12 +1,12 @@
-//#include <iostream>
-//#include "string"
-//#include "fstream"
+/*#include <iostream>
+#include "string"
+#include "fstream"
+#define _USE_MATH_DEFINES
+#include <math.h> // cmath не работает, жалуется что M_PI не обпределён
+using namespace std;*/
 #include "Constants.h"
 #include "Geometry.h"
 #include "Triangle.h"
-//#define _USE_MATH_DEFINES
-//#include <math.h> // cmath не работает, жалуется что M_PI не обпределён
-//using namespace std;
 
 //class Rectangle : public Geometry
 //{
@@ -69,6 +69,7 @@ int main ()
             cout << endl << endl;
             cout << tri;
             tri.Square ();
+            tri.Draw ();
 		}
 			break;
 

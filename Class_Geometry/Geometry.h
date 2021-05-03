@@ -4,6 +4,7 @@
 #include "fstream"
 #define _USE_MATH_DEFINES
 #include <math.h> // cmath не работает, жалуется что M_PI не обпределён
+#include "iomanip"
 
 using namespace std;
 
@@ -24,12 +25,12 @@ public:
 
 protected:
     int class_amount_lines{};
-    double** arr_figure_points{};
+    int** arr_figure_points{};
     double* arr_figure_lines{};
 
     bool check_figure_life = false;
 
-    int* arr_amount_angle{};
+    double* arr_amount_angle{};
     double squareGeometry{};
 
     string geometry_type{};
@@ -46,7 +47,9 @@ protected:
 
     virtual void Print_coordinate () = 0;
 
-    virtual void Draw () {};
+    virtual void Draw () = 0;
+
+    virtual void Meridian () = 0;
 };
 
 /*istream& operator >>(istream& in, Geometry& other)

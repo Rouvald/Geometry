@@ -11,12 +11,12 @@ Geometry::Geometry ()
 Geometry::Geometry (int amount_points)
 {
     class_amount_lines = amount_points;
-    arr_figure_points = new double* [class_amount_lines];
+    arr_figure_points = new int* [class_amount_lines];
     for (int i = 0; i < class_amount_lines; i++)
     {
-        arr_figure_points[i] = new double[COORDINATE];
+        arr_figure_points[i] = new int[COORDINATE];
     }
-    arr_amount_angle = new int[class_amount_lines];
+    arr_amount_angle = new double[class_amount_lines];
 }
 
 /*Geometry::Geometry (double** figure_points, int amount_points)
@@ -50,16 +50,16 @@ void Geometry::Make_lines ()
 
     for (int i = 0; i < class_amount_lines; i++)
     {
-        int class_coordinate = 0;
+
         if (i == class_amount_lines - 1)
         {
-            arr_figure_lines[i] = sqrt (((pow ((arr_figure_points[0][class_coordinate] - arr_figure_points[i][class_coordinate]), 2)) +
-                (pow ((arr_figure_points[0][class_coordinate + 1] - arr_figure_points[i][class_coordinate + 1]), 2))));
+            arr_figure_lines[i] = sqrt (((pow ((arr_figure_points[0][class_COORDINATE_X] - arr_figure_points[i][class_COORDINATE_X]), 2)) +
+                (pow ((arr_figure_points[0][class_COORDINATE_Y] - arr_figure_points[i][class_COORDINATE_Y]), 2))));
         }
         else
         {
-            arr_figure_lines[i] = sqrt (((pow ((arr_figure_points[i + 1][class_coordinate] - arr_figure_points[i][class_coordinate]), 2)) +
-                (pow ((arr_figure_points[i + 1][class_coordinate + 1] - arr_figure_points[i][class_coordinate + 1]), 2))));
+            arr_figure_lines[i] = sqrt (((pow ((arr_figure_points[i + 1][class_COORDINATE_X] - arr_figure_points[i][class_COORDINATE_X]), 2)) +
+                (pow ((arr_figure_points[i + 1][class_COORDINATE_Y] - arr_figure_points[i][class_COORDINATE_Y]), 2))));
         }
     }
     /*cout << "All lines of the figure: ";
