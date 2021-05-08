@@ -4,7 +4,6 @@
 #define _USE_MATH_DEFINES
 #include <math.h> // cmath не работает, жалуется что M_PI не обпределён
 using namespace std;*/
-#include "Constants.h"
 #include "Geometry.h"
 #include "Triangle.h"
 

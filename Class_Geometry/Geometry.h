@@ -2,9 +2,8 @@
 #include <iostream>
 #include "string"
 #include "fstream"
-#define _USE_MATH_DEFINES
-#include <math.h> // cmath не работает, жалуется что M_PI не обпределён
 #include "iomanip"
+#include "Constants.h"
 
 using namespace std;
 

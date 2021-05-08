@@ -65,6 +65,11 @@
     // Draw triangle ( draw 3 points )
     void Triangle::Draw ()
     {
+        if (!check_figure_life)
+        {
+            cout << "Draw function:  Triangle can't be made in IRL" << endl;
+            return;
+        }
         cout << endl << endl;
         cout << "*****************************************************************" << endl << endl;
 
@@ -88,9 +93,11 @@
 
         int* arr_figure_points_Y = new int[class_amount_lines];
         int* arr_figure_points_Y_COORDINATE = new int[class_amount_lines];
+        int* arr_figure_points_X_COORDINATE = new int[class_amount_lines];
         for (int q = 0; q < class_amount_lines; q++)
         {
             arr_figure_points_Y_COORDINATE[q] = arr_figure_points[q][class_COORDINATE_Y];
+            arr_figure_points_X_COORDINATE[q] = arr_figure_points[q][class_COORDINATE_X];
             arr_figure_points_Y[q] = q;
         }
 
@@ -110,10 +117,64 @@
             arr_figure_points_Y_COORDINATE[k] = temp_MAX_Y;
             arr_figure_points_Y_COORDINATE[temp] = temp_amount;
 
+            temp_amount = arr_figure_points_X_COORDINATE[k];
+            arr_figure_points_X_COORDINATE[k] = arr_figure_points_X_COORDINATE[temp];
+            arr_figure_points_X_COORDINATE[temp] = temp_amount;
+
             temp_point = arr_figure_points_Y[k];
             arr_figure_points_Y[k] = temp;
             arr_figure_points_Y[temp] = temp_point;
 
+        }
+        /*for (int i = 0; i < class_amount_lines; i++)
+        {
+            cout << arr_figure_points_Y_COORDINATE[i] << endl;
+        }*/
+        bool check_equal_point_Y_COORDINATE = false;
+        int temp_equal_point_Y_COORDINATE = 0;
+        for (int q = 0; q < class_amount_lines-1; q++)
+        {
+            int equal_point_Y = 0, equal_point_Y_COORDINATE = 0;;
+            /*if (q == class_amount_lines - 1)
+            {
+                if (arr_figure_points_Y_COORDINATE[q] == arr_figure_points_Y_COORDINATE[0])
+                {
+                    //check_equal_point_Y_COORDINATE = true;
+
+                    if (arr_figure_points_X_COORDINATE[q] > arr_figure_points_X_COORDINATE[0])
+                    {
+                        equal_point_Y_COORDINATE = arr_figure_points_Y_COORDINATE[q];
+                        arr_figure_points_Y_COORDINATE[q] = arr_figure_points_Y_COORDINATE[0];
+                        arr_figure_points_Y_COORDINATE[0] = equal_point_Y_COORDINATE;
+
+                        equal_point_Y = arr_figure_points_Y[q];
+                        arr_figure_points_Y[q] = arr_figure_points_Y[0];
+                        arr_figure_points_Y[0] = equal_point_Y;
+                    }
+                }
+            }
+            else */
+            if (arr_figure_points_Y_COORDINATE[q] == arr_figure_points_Y_COORDINATE[q + 1])
+            {
+                check_equal_point_Y_COORDINATE = true;
+
+                if (arr_figure_points_X_COORDINATE[q] > arr_figure_points_X_COORDINATE[q + 1])
+                {
+                    temp_equal_point_Y_COORDINATE = arr_figure_points_Y[q];
+
+                    equal_point_Y_COORDINATE = arr_figure_points_Y_COORDINATE[q];
+                    arr_figure_points_Y_COORDINATE[q] = arr_figure_points_Y_COORDINATE[q + 1];
+                    arr_figure_points_Y_COORDINATE[q + 1] = equal_point_Y_COORDINATE;
+
+                    equal_point_Y = arr_figure_points_Y[q];
+                    arr_figure_points_Y[q] = arr_figure_points_Y[q + 1];
+                    arr_figure_points_Y[q + 1] = equal_point_Y;
+                }
+                else
+                {
+                    temp_equal_point_Y_COORDINATE = arr_figure_points_Y[q+1];
+                }
+            }
         }
          int class_amount_lines_difference_COORDINATE = class_amount_lines - 1;
         int* arr_difference_COORDINATE = new int[class_amount_lines_difference_COORDINATE];
@@ -135,15 +196,32 @@
 
         for (int i = 0; i < class_amount_lines; i++)
         {
-            for (int j = 0; j < arr_figure_points[arr_figure_points_Y[i]][class_COORDINATE_X] + temp_MIN_X + right_distance + 1; j++)
+            if (check_equal_point_Y_COORDINATE && temp_equal_point_Y_COORDINATE == arr_figure_points_Y[i])
             {
-                if (j == arr_figure_points[arr_figure_points_Y[i]][class_COORDINATE_X] + temp_MIN_X + right_distance)
+                for (int j = 0; j < arr_figure_points[arr_figure_points_Y[i]][class_COORDINATE_X] + temp_MIN_X + right_distance; j++)
                 {
-                    cout << "*";
+                    if (j == arr_figure_points[arr_figure_points_Y[i]][class_COORDINATE_X] + temp_MIN_X + right_distance - 1)
+                    {
+                        cout << "*";
+                    }
+                    else
+                    {
+                        cout << " ";
+                    }
                 }
-                else
+            }
+            else
+            {
+                for (int j = 0; j < arr_figure_points[arr_figure_points_Y[i]][class_COORDINATE_X] + temp_MIN_X + right_distance + 1; j++)
                 {
-                    cout << " ";
+                    if (j == arr_figure_points[arr_figure_points_Y[i]][class_COORDINATE_X] + temp_MIN_X + right_distance)
+                    {
+                        cout << "*";
+                    }
+                    else
+                    {
+                        cout << " ";
+                    }
                 }
             }
             if (i < class_amount_lines - 1)
@@ -282,12 +360,12 @@
 
         for (int i = 0; i < class_amount_lines; i++)
         {
-            if (arr_amount_angle[i] == 90)
+            if ((int)arr_amount_angle[i] == 90)
             {
                 geometry_type += " Rectangular, ";
                 break;
             }
-            else if (arr_amount_angle[i] > 90)
+            else if ((int)arr_amount_angle[i] > 90)
             {
                 geometry_type += " Obtuse, ";
                 break;
